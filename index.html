@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raushan Kumar — Full-Stack Developer & AI/ML Enthusiast</title>
+<meta name="description" content="Portfolio of Raushan Kumar, a B.Tech CSE (AI/ML) student building toward a career in AI/ML engineering and research, with a roadmap through GATE and graduate study in South Korea.">
+<meta name="theme-color" content="#05070d">
+<meta property="og:title" content="Raushan Kumar — Full-Stack Developer & AI/ML Enthusiast">
+<meta property="og:description" content="B.Tech CSE (AI/ML) student building full-stack and AI/ML skills — Java, Python, C++, C.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+        --bg: #05070d;
+        --bg2: #0a0f1c;
+        --primary: #10b981;
+        --secondary: #06b6d4;
+        --accent2: #8b5cf6;
+        --text: #cbd5e1;
+        --text-dim: #7c8aa0;
+        --border: rgba(16, 185, 129, 0.25);
+        --card-bg: rgba(16, 185, 129, 0.04);
+        --font-mono: 'JetBrains Mono', Consolas, 'SF Mono', 'Fira Code', 'Courier New', monospace;
+        --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    ::selection { background: var(--primary); color: #04121a; }
+
+    body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, .logo, .nav-links a, .btn, .badge, .explore-badge, .proj-tag,
+    .timeline-tag, .uni-target, .eyebrow, .section-header span.tag,
+    .skills-group-title, .dream-card span, footer p.tagline, .contact-row strong,
+    .terminal-meta, .form-group label, .social-row a, .footer-social a {
+        font-family: var(--font-mono);
+        letter-spacing: 0.03em;
+    }
+
+    .bg-pattern {
+        position: fixed; inset: 0; z-index: -2;
+        background-image:
+            linear-gradient(rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+        background-size: 42px 42px;
+        -webkit-mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 75%);
+        mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 75%);
+    }
+
+    .bg-glow { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+    .bg-glow::before, .bg-glow::after {
+        content: ''; position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.18;
+        animation: drift 22s ease-in-out infinite;
+    }
+    .bg-glow::before { width: 480px; height: 480px; background: var(--primary); top: -180px; left: -120px; }
+    .bg-glow::after { width: 420px; height: 420px; background: var(--accent2); bottom: -160px; right: -100px; animation-delay: -9s; }
+
+    @keyframes drift {
+        0%, 100% { transform: translate(0,0) scale(1); }
+        50% { transform: translate(60px, 40px) scale(1.12); }
+    }
+
+    @keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+    @keyframes spin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Navbar */
+    nav {
+        position: fixed; top: 0; width: 100%; z-index: 1000;
+        background: rgba(5, 7, 13, 0.85); backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        transition: background 0.3s;
+    }
+    .nav-container {
+        max-width: 1300px; margin: 0 auto; padding: 1.1rem 5%;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo {
+        font-size: 1.4rem; font-weight: 700; letter-spacing: 0.5px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; align-items: center; }
+    .nav-links a {
+        color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.82rem;
+        transition: color 0.3s; position: relative; white-space: nowrap;
+    }
+    .nav-links a::after {
+        content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px;
+        background: var(--primary); transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-toggle {
+        display: none; flex-direction: column; justify-content: center; gap: 5px;
+        width: 32px; height: 32px; background: none; border: none; cursor: pointer; z-index: 1100; padding: 0;
+    }
+    .nav-toggle .bar { width: 100%; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s ease; }
+    .nav-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .nav-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 1050px) {
+        .nav-toggle { display: flex; }
+        .nav-links {
+            position: fixed; top: 0; right: -100%; width: 68%; max-width: 300px; height: 100vh;
+            background: rgba(5, 7, 13, 0.98); flex-direction: column; justify-content: center;
+            gap: 1.8rem; transition: right 0.35s ease; border-left: 1px solid var(--border);
+            overflow-y: auto; padding: 2rem 0;
+        }
+        .nav-links.active { right: 0; }
+        .nav-links a { font-size: 0.95rem; }
+    }
+
+    section, .hero { padding: 6rem 5% 5rem; max-width: 1300px; margin: 0 auto; }
+
+    /* Hero */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 7rem; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; width: 100%; }
+
+    .terminal-meta {
+        font-size: 0.72rem; color: var(--primary); opacity: 0.8; margin-bottom: 1rem;
+        text-transform: uppercase; letter-spacing: 0.08em; animation: fadeUp 0.8s ease-out;
+    }
+    .terminal-meta .status-ok { color: var(--secondary); }
+
+    .eyebrow { color: var(--secondary); font-weight: 600; margin-bottom: 0.6rem; animation: fadeUp 0.8s ease-out; font-size: 0.85rem; }
+    .hero-content h1 {
+        font-family: var(--font-mono);
+        font-size: clamp(2.1rem, 6vw, 3.5rem); font-weight: 800;
+        margin-bottom: 0.6rem; line-height: 1.15; letter-spacing: -0.01em;
+        background: linear-gradient(135deg, #fff, var(--primary));
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        animation: fadeUp 0.8s ease-out 0.1s backwards;
+    }
+    .role-line { font-size: 1.25rem; color: var(--text); margin-bottom: 1.2rem; min-height: 2rem; font-family: var(--font-mono); letter-spacing: 0.02em; animation: fadeUp 0.8s ease-out 0.2s backwards; }
+    .role-line .cursor { color: var(--primary); animation: blink 0.9s step-end infinite; }
+    .hero-content p.desc { max-width: 560px; opacity: 0.9; margin-bottom: 1.5rem; animation: fadeUp 0.8s ease-out 0.3s backwards; font-family: var(--font-body); }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-bottom: 1.8rem; animation: fadeUp 0.8s ease-out 0.35s backwards; }
+    .badge {
+        display: inline-flex; align-items: center; padding: 0.45rem 0.9rem;
+        border-radius: 50px; background: var(--card-bg); border: 1px solid var(--border);
+        font-size: 0.76rem; color: var(--text);
+    }
+
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.8rem; animation: fadeUp 0.8s ease-out 0.4s backwards; }
+    .btn {
+        padding: 0.85rem 1.9rem; border-radius: 50px; text-decoration: none; font-weight: 600;
+        display: inline-flex; align-items: center; border: none; cursor: pointer; font-size: 0.85rem;
+        transition: all 0.3s;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #04121a; box-shadow: 0 10px 28px rgba(16,185,129,0.28); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 36px rgba(16,185,129,0.45); }
+    .btn-secondary { background: transparent; color: var(--text); border: 2px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-3px); }
+
+    .social-row { display: flex; gap: 0.9rem; animation: fadeUp 0.8s ease-out 0.5s backwards; }
+    .social-row a {
+        width: 46px; height: 46px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--border);
+        display: flex; align-items: center; justify-content: center; color: var(--secondary); font-size: 0.75rem; font-weight: 700;
+        transition: all 0.3s; text-decoration: none;
+    }
+    .social-row a:hover { background: var(--primary); color: #04121a; border-color: var(--primary); transform: translateY(-4px); }
+
+    /* Hero visual */
+    .hero-visual { position: relative; width: 380px; height: 380px; margin: 0 auto; }
+    .avatar-frame { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 230px; height: 230px; }
+    .avatar-ring { position: absolute; inset: -22px; border: 2px dashed rgba(16,185,129,0.4); border-radius: 50%; animation: spin 26s linear infinite; }
+    .avatar-ring.ring2 { inset: -42px; border-color: rgba(6,182,212,0.3); animation-duration: 34s; animation-direction: reverse; }
+    .avatar-circle {
+        width: 100%; height: 100%; border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--font-mono); font-size: 3.4rem; font-weight: 700; color: #fff;
+        box-shadow: 0 25px 60px rgba(16,185,129,0.35);
+        animation: floatY 6s ease-in-out infinite;
+    }
+    .avatar-photo {
+        width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: center;
+        border: 3px solid rgba(16,185,129,0.4); display: block;
+        box-shadow: 0 25px 60px rgba(16,185,129,0.35);
+        animation: floatY 6s ease-in-out infinite;
+    }
+    .orbit {
+        position: absolute; width: 58px; height: 58px; border-radius: 16px;
+        background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.35);
+        display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 1.05rem; font-weight: 700;
+        color: var(--secondary); backdrop-filter: blur(6px); animation: floatY 5s ease-in-out infinite;
+    }
+    .orbit-1 { top: -4px; left: 42%; }
+    .orbit-2 { top: 32%; right: -6px; animation-delay: 0.5s; }
+    .orbit-3 { bottom: 2%; left: -6px; animation-delay: 1s; }
+    .orbit-4 { bottom: 14%; right: 6%; animation-delay: 1.5s; }
+
+    @media (max-width: 960px) {
+        .hero-grid { grid-template-columns: 1fr; text-align: center; }
+        .hero-content p.desc, .badge-row, .hero-buttons, .social-row, .terminal-meta { margin-left: auto; margin-right: auto; justify-content: center; }
+        .hero-visual { margin-top: 2rem; }
+    }
+
+    /* Section headers */
+    .section-header { text-align: center; margin-bottom: 3.2rem; }
+    .section-header span.tag { color: var(--secondary); font-weight: 600; font-size: 0.8rem; }
+    .section-header h2 {
+        font-size: 2.2rem; font-weight: 700; margin-top: 0.4rem;
+        background: linear-gradient(135deg, #fff, var(--primary));
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* About */
+    .about-intro { max-width: 800px; margin: 0 auto 2rem; text-align: center; opacity: 0.9; font-family: var(--font-body); }
+    .skills-group-title {
+        font-size: 0.82rem; text-transform: uppercase;
+        text-align: center; margin: 0 0 1.3rem;
+    }
+    .skills-group-title.second { margin-top: 3rem; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .about-card {
+        background: var(--card-bg); border: 1px solid var(--border); border-left: 3px solid var(--primary);
+        border-radius: 16px; padding: 2.2rem; font-family: var(--font-body);
+    }
+    .about-card h3 { font-family: var(--font-mono); font-size: 1.2rem; margin-bottom: 1rem; color: #fff; }
+    .about-card p { margin-bottom: 0.6rem; opacity: 0.9; }
+    .about-card p strong { color: var(--secondary); font-family: var(--font-mono); }
+
+    @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.6rem; }
+    .skill-card {
+        background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem;
+        transition: all 0.3s; text-align: center; font-family: var(--font-body);
+    }
+    .skill-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 18px 36px rgba(16,185,129,0.18); }
+    .skill-icon {
+        width: 64px; height: 64px; margin: 0 auto 0.9rem;
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--font-mono); font-weight: 800; font-size: 0.9rem; color: var(--primary);
+        background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.15));
+        border: 2px solid var(--primary);
+        clip-path: polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0% 50%);
+    }
+    .skill-card h3 { font-family: var(--font-mono); font-size: 1.05rem; margin-bottom: 0.5rem; color: #fff; }
+    .skill-card p { font-size: 0.85rem; opacity: 0.75; }
+
+    .explore-badges { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; }
+    .explore-badge {
+        padding: 0.6rem 1.1rem; border-radius: 50px; background: var(--card-bg);
+        border: 1px solid var(--border); font-size: 0.78rem; color: var(--text);
+        display: inline-flex; align-items: center;
+    }
+
+    /* Timeline (Journey) */
+    .timeline { position: relative; max-width: 720px; margin: 0 auto; padding-left: 2rem; }
+    .timeline::before { content: ''; position: absolute; left: 0.55rem; top: 0.3rem; bottom: 0.3rem; width: 2px; background: linear-gradient(var(--primary), var(--secondary)); }
+    .timeline-item { position: relative; padding-bottom: 2.2rem; padding-left: 1.8rem; font-family: var(--font-body); }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot { position: absolute; left: -2rem; top: 0.25rem; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 4px rgba(16,185,129,0.15); }
+    .timeline-item.goal .timeline-dot { background: var(--secondary); box-shadow: 0 0 0 4px rgba(6,182,212,0.15); }
+    .timeline-tag { display: inline-block; font-size: 0.68rem; padding: 0.2rem 0.6rem; border-radius: 50px; margin-bottom: 0.5rem; }
+    .timeline-tag.now { background: rgba(16,185,129,0.18); color: var(--primary); }
+    .timeline-tag.goal { background: rgba(6,182,212,0.14); color: var(--secondary); }
+    .timeline-item h4 { font-family: var(--font-mono); font-size: 1.05rem; color: #fff; margin-bottom: 0.35rem; }
+    .timeline-item p { font-size: 0.87rem; opacity: 0.75; max-width: 480px; }
+
+    /* Dream Companies */
+    .dream-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.2rem; max-width: 680px; margin: 0 auto; }
+    .dream-card {
+        background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+        padding: 2rem 1rem; text-align: center; transition: all 0.3s;
+        display: flex; align-items: center; justify-content: center; min-height: 90px;
+    }
+    .dream-card:hover { transform: translateY(-6px); border-color: var(--secondary); box-shadow: 0 14px 30px rgba(6,182,212,0.15); }
+    .dream-card span { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+
+    /* Dream Universities */
+    .uni-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.6rem; }
+    .uni-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: all 0.3s; position: relative; font-family: var(--font-body); }
+    .uni-card:hover { transform: translateY(-6px); border-color: var(--secondary); box-shadow: 0 18px 36px rgba(6,182,212,0.15); }
+    .uni-card.top { border-color: rgba(16,185,129,0.5); }
+    .uni-target {
+        position: absolute; top: 1rem; right: 1rem; font-size: 0.62rem; z-index: 3;
+        padding: 0.3rem 0.7rem; border-radius: 50px; background: rgba(6,182,212,0.92); color: #04121a;
+    }
+    .uni-target.top { background: rgba(16,185,129,0.94); }
+    .uni-gallery { position: relative; height: 150px; overflow: hidden; background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(6,182,212,0.12)); touch-action: pan-y; }
+    .uni-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.4s ease; }
+    .uni-photo.active { opacity: 1; }
+    .uni-fallback {
+        display: flex; position: absolute; inset: 0; align-items: center; justify-content: center;
+        font-family: var(--font-mono); font-size: 1.35rem; font-weight: 800; letter-spacing: 1px; color: var(--secondary);
+    }
+    .uni-dots { position: absolute; bottom: 0.6rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.4rem; z-index: 2; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.3s; border: none; padding: 0; }
+    .dot.active { background: var(--secondary); width: 16px; border-radius: 4px; }
+    .uni-body { padding: 1.4rem 1.6rem 1.6rem; }
+    .uni-card h3 { font-family: var(--font-mono); font-size: 1.05rem; color: #fff; margin-bottom: 0.3rem; }
+    .uni-location { font-size: 0.72rem; color: var(--text-dim); margin-bottom: 0.7rem; }
+    .uni-card p.desc-text { font-size: 0.85rem; opacity: 0.75; margin-bottom: 1rem; }
+
+    /* Process */
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.4rem; }
+    .process-step { text-align: center; padding: 1.8rem 1.2rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; font-family: var(--font-body); }
+    .process-num { font-size: 0.78rem; color: var(--secondary); font-weight: 700; margin-bottom: 0.7rem; font-family: var(--font-mono); letter-spacing: 0.05em; }
+    .process-step h4 { font-family: var(--font-mono); font-size: 1rem; margin-bottom: 0.5rem; color: #fff; }
+    .process-step p { font-size: 0.82rem; opacity: 0.75; }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.6rem; }
+    .project-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: all 0.3s; border-top: 3px solid var(--primary); }
+    .project-card:hover { transform: translateY(-6px); border-color: var(--primary); }
+    .project-card h3 { font-family: var(--font-mono); font-size: 1.05rem; margin-bottom: 0.5rem; color: #fff; }
+    .project-card p { font-size: 0.85rem; opacity: 0.7; margin-bottom: 1rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .proj-tag { font-size: 0.68rem; padding: 0.25rem 0.6rem; border-radius: 50px; background: rgba(6,182,212,0.1); color: var(--secondary); border: 1px solid rgba(6,182,212,0.25); }
+    .proj-links { display: flex; gap: 1.2rem; }
+    .proj-links a { font-family: var(--font-mono); font-size: 0.78rem; color: var(--secondary); text-decoration: none; }
+    .proj-links a:hover { text-decoration: underline; }
+    .proj-note { text-align: center; opacity: 0.55; font-size: 0.85rem; margin-top: 2.2rem; font-family: var(--font-body); }
+
+    /* Resume */
+    .resume-card {
+        max-width: 780px; margin: 0 auto; text-align: center; background: var(--card-bg);
+        border: 1px solid var(--border); border-radius: 20px; padding: 3rem 2rem; font-family: var(--font-body);
+    }
+    .resume-card h3 { font-family: var(--font-mono); font-size: 1.5rem; margin-bottom: 0.8rem; color: #fff; }
+    .resume-card p { opacity: 0.85; margin-bottom: 1.8rem; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 2rem; align-items: start; }
+    .contact-info-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; }
+    .contact-info-card h3 { font-family: var(--font-mono); color: #fff; margin-bottom: 1.4rem; font-size: 1.1rem; }
+    .contact-row {
+        display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0.6rem; border-radius: 12px;
+        text-decoration: none; color: var(--text); transition: background 0.3s; margin-bottom: 0.3rem; font-family: var(--font-body);
+    }
+    .contact-row:hover { background: rgba(16,185,129,0.08); }
+    .contact-tag {
+        width: 42px; height: 42px; border-radius: 12px; background: rgba(16,185,129,0.1);
+        display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 0.68rem; font-weight: 700;
+        font-family: var(--font-mono); flex-shrink: 0;
+    }
+    .contact-row strong { display: block; font-size: 0.85rem; }
+    .contact-row small { color: var(--text-dim); font-size: 0.8rem; word-break: break-all; font-family: var(--font-body); }
+
+    .contact-form { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; }
+    .form-group { margin-bottom: 1.3rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; color: var(--secondary); font-size: 0.82rem; font-weight: 600; }
+    .form-group input, .form-group textarea {
+        width: 100%; padding: 0.9rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+        border-radius: 10px; color: var(--text); font-size: 0.95rem; font-family: var(--font-body); transition: all 0.3s;
+    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer { text-align: center; padding: 2.5rem 5%; border-top: 1px solid var(--border); background: rgba(5,7,13,0.7); }
+    .footer-social { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: 1.2rem; }
+    .footer-social a {
+        width: 42px; height: 42px; border-radius: 50%; background: var(--card-bg); border: 1px solid var(--border);
+        display: flex; align-items: center; justify-content: center; color: var(--secondary); transition: all 0.3s;
+        font-size: 0.68rem; font-weight: 700; text-decoration: none;
+    }
+    .footer-social a:hover { background: var(--primary); color: #04121a; transform: translateY(-4px); }
+    footer p { font-size: 0.85rem; opacity: 0.8; font-family: var(--font-body); }
+    footer p.tagline { opacity: 0.55; margin-top: 0.3rem; font-size: 0.72rem; }
+
+    .fade-in { animation: fadeUp 0.8s ease-out; }
+</style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="bg-glow"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Raushan.dev</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#universities">Korea</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <p class="terminal-meta">&gt; system.status: <span class="status-ok">online</span> // profile.access: public</p>
+                <p class="eyebrow">HELLO, I'M</p>
+                <h1>Raushan Kumar</h1>
+                <p class="role-line">&gt; <span id="typewriter"></span><span class="cursor">|</span></p>
+                <p class="desc">Third-semester B.Tech CSE (AI/ML) student at Vivekananda Global University, building real projects in Java, Python, C++ and C. Currently working through a Google course and aiming toward a career as a Data Scientist — I like turning what I learn into things I can actually ship.</p>
+                <div class="badge-row">
+                    <span class="badge">3rd Semester</span>
+                    <span class="badge">CSE (AI/ML)</span>
+                    <span class="badge">Google Course</span>
+                    <span class="badge">Aiming: Data Scientist</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+                </div>
+                <div class="social-row">
+                    <a href="https://www.linkedin.com/in/raushan-kumar-422a05373?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" title="LinkedIn">in</a>
+                    <a href="https://github.com/raushanprogramer" target="_blank" title="GitHub">GH</a>
+                    <a href="mailto:raushan790s@gmail.com" title="Email">@</a>
+                    <a href="tel:+919546184833" title="Call">Call</a>
+                </div>
+            </div>
+            <div class="hero-visual fade-in">
+                <div class="avatar-ring"></div>
+                <div class="avatar-ring ring2"></div>
+                <div class="orbit orbit-1">Java</div>
+                <div class="orbit orbit-2">Py</div>
+                <div class="orbit orbit-3">C++</div>
+                <div class="orbit orbit-4">C</div>
+                <div class="avatar-frame">
+                    <img src="profile.jpg" alt="Raushan Kumar" class="avatar-photo" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="avatar-circle" style="display:none;">RK</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-header">
+            <span class="tag">GET TO KNOW ME</span>
+            <h2>About Me</h2>
+        </div>
+        <p class="about-intro">I'm building a serious foundation in computer science, AI/ML, and software engineering — one deliberate step at a time. Right now that means core programming in Java, Python, C++ and C, real projects instead of just exercises, and a growing curiosity about how intelligent systems are designed and researched. The long-term goal is bigger than a degree: I'm preparing for GATE, aiming for a GKS-funded Master's and a PhD in South Korea, and working toward a career that combines engineering, AI/ML, and research — eventually contributing to technology and research organizations with real global reach.</p>
+        <p class="skills-group-title" style="margin-bottom:1rem;">Career Direction</p>
+        <div class="explore-badges" style="margin-bottom:2.8rem;">
+            <span class="explore-badge">Artificial Intelligence</span>
+            <span class="explore-badge">Machine Learning</span>
+            <span class="explore-badge">Deep Learning</span>
+            <span class="explore-badge">Generative AI</span>
+            <span class="explore-badge">AI Agents</span>
+            <span class="explore-badge">Software Engineering</span>
+            <span class="explore-badge">Full-Stack Development</span>
+            <span class="explore-badge">Research</span>
+            <span class="explore-badge">Product Innovation</span>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Education</h3>
+                <p><strong>B.Tech CSE (AI/ML)</strong> — 3rd Semester</p>
+                <p><strong>University:</strong> Vivekananda Global University</p>
+                <p><strong>Certification:</strong> Google Course (in progress)</p>
+                <p>Building a solid base in programming and problem-solving, with coursework increasingly focused on AI and machine learning fundamentals.</p>
+            </div>
+            <div class="about-card">
+                <h3>Where I'm Headed</h3>
+                <p><strong>Long-term goal:</strong> AI/ML Engineer, Software Engineer &amp; Researcher</p>
+                <p><strong>Path:</strong> B.Tech → GATE → Master's (South Korea) → PhD</p>
+                <p>The full roadmap is just below in My Journey, along with my dream universities and companies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-header">
+            <span class="tag">WHAT I KNOW</span>
+            <h2>Technical Skills</h2>
+        </div>
+        <p class="skills-group-title">Programming Languages</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">Java</div>
+                <h3>Java</h3>
+                <p>Object-oriented programming and core Java fundamentals.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">Py</div>
+                <h3>Python</h3>
+                <p>Scripting, logic-building, and the language I'll lean on most for data science.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">C++</div>
+                <h3>C++</h3>
+                <p>Structured programming, data structures, and problem solving.</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">C</div>
+                <h3>C</h3>
+                <p>Foundations of programming — memory, logic, and low-level thinking.</p>
+            </div>
+        </div>
+        <p class="skills-group-title second">Tools I Use</p>
+        <div class="explore-badges" style="margin-bottom:2.5rem;">
+            <span class="explore-badge">Git</span>
+            <span class="explore-badge">GitHub</span>
+            <span class="explore-badge">Figma</span>
+        </div>
+        <p class="skills-group-title second">Currently Exploring</p>
+        <div class="explore-badges">
+            <span class="explore-badge">AI &amp; ML Fundamentals</span>
+            <span class="explore-badge">Data Analysis Basics</span>
+            <span class="explore-badge">Google Course Modules</span>
+            <span class="explore-badge">Data Science Tools</span>
+        </div>
+    </section>
+
+    <section id="journey">
+        <div class="section-header">
+            <span class="tag">THE ROAD AHEAD</span>
+            <h2>My Journey</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item now">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag now">NOW</span>
+                <h4>B.Tech CSE (AI/ML)</h4>
+                <p>3rd semester at Vivekananda Global University — building core programming and AI/ML foundations.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">GOAL</span>
+                <h4>GATE Preparation → GATE</h4>
+                <p>Preparing seriously for the GATE exam to open the door to higher studies.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">GOAL</span>
+                <h4>Global Korea Scholarship</h4>
+                <p>Aiming for the GKS to fund a Master's degree in South Korea.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">GOAL</span>
+                <h4>Master's in South Korea</h4>
+                <p>Postgraduate study focused on AI/ML, inside one of the world's leading tech ecosystems.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">GOAL</span>
+                <h4>AI/ML Research</h4>
+                <p>Contributing to real research alongside advanced coursework.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">GOAL</span>
+                <h4>PhD in South Korea</h4>
+                <p>Doctoral research, pushing further into AI/ML.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">GOAL</span>
+                <h4>Global Tech Career</h4>
+                <p>A career combining AI/ML engineering, software engineering, research and innovation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-korea">
+        <div class="section-header">
+            <span class="tag">MY DREAM DESTINATION</span>
+            <h2>Why South Korea?</h2>
+        </div>
+        <p class="about-intro">South Korea sits at the center of some of the most advanced work happening in AI, semiconductors, and software — from world-leading chip research to a university system producing serious AI/ML output. Studying there means learning inside that ecosystem instead of just reading about it: real labs, real researchers, and a technology culture built around building things, not just studying them.</p>
+        <div class="explore-badges">
+            <span class="explore-badge">Semiconductor Innovation</span>
+            <span class="explore-badge">AI &amp; ML Research</span>
+            <span class="explore-badge">World-Class Universities</span>
+            <span class="explore-badge">Global Tech Culture</span>
+        </div>
+    </section>
+
+    <section id="universities">
+        <div class="section-header">
+            <span class="tag">DREAM TARGETS, NOT A RANKING</span>
+            <h2>Dream Universities</h2>
+        </div>
+        <div class="uni-grid">
+            <div class="uni-card top">
+                <span class="uni-target top">TOP DREAM</span>
+                <div class="uni-gallery">
+                    <img src="images/universities/snu-1.jpg" alt="Seoul National University campus" class="uni-photo active" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/snu-2.jpg" alt="Seoul National University main building" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/snu-3.jpg" alt="Seoul National University research facility" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <div class="uni-fallback">SNU</div>
+                    <div class="uni-dots"><button class="dot active"></button><button class="dot"></button><button class="dot"></button></div>
+                </div>
+                <div class="uni-body">
+                    <h3>Seoul National University</h3>
+                    <p class="uni-location">South Korea</p>
+                    <p class="desc-text">South Korea's top-ranked national university — renowned for research output and strong computer science and AI programs.</p>
+                    <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">Research</span><span class="proj-tag">Technology</span></div>
+                </div>
+            </div>
+            <div class="uni-card">
+                <span class="uni-target">DREAM TARGET</span>
+                <div class="uni-gallery">
+                    <img src="images/universities/kaist-1.jpg" alt="KAIST campus" class="uni-photo active" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/kaist-2.jpg" alt="KAIST main building" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/kaist-3.jpg" alt="KAIST research facility" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <div class="uni-fallback">KAIST</div>
+                    <div class="uni-dots"><button class="dot active"></button><button class="dot"></button><button class="dot"></button></div>
+                </div>
+                <div class="uni-body">
+                    <h3>KAIST</h3>
+                    <p class="uni-location">South Korea</p>
+                    <p class="desc-text">Korea's leading science and technology institute, known for engineering, AI, and robotics research.</p>
+                    <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">Research</span><span class="proj-tag">Technology</span></div>
+                </div>
+            </div>
+            <div class="uni-card">
+                <span class="uni-target">DREAM TARGET</span>
+                <div class="uni-gallery">
+                    <img src="images/universities/korea-university-1.jpg" alt="Korea University campus" class="uni-photo active" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/korea-university-2.jpg" alt="Korea University main building" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/korea-university-3.jpg" alt="Korea University library" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <div class="uni-fallback">KU</div>
+                    <div class="uni-dots"><button class="dot active"></button><button class="dot"></button><button class="dot"></button></div>
+                </div>
+                <div class="uni-body">
+                    <h3>Korea University</h3>
+                    <p class="uni-location">South Korea</p>
+                    <p class="desc-text">One of Korea's oldest and most respected universities, with strong research across computer science and engineering.</p>
+                    <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">Research</span><span class="proj-tag">Technology</span></div>
+                </div>
+            </div>
+            <div class="uni-card">
+                <span class="uni-target">DREAM TARGET</span>
+                <div class="uni-gallery">
+                    <img src="images/universities/yonsei-1.jpg" alt="Yonsei University campus" class="uni-photo active" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/yonsei-2.jpg" alt="Yonsei University main building" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/yonsei-3.jpg" alt="Yonsei University library" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <div class="uni-fallback">YU</div>
+                    <div class="uni-dots"><button class="dot active"></button><button class="dot"></button><button class="dot"></button></div>
+                </div>
+                <div class="uni-body">
+                    <h3>Yonsei University</h3>
+                    <p class="uni-location">South Korea</p>
+                    <p class="desc-text">A leading private research university in Seoul, with strong international ties and a growing AI/tech research presence.</p>
+                    <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">Research</span><span class="proj-tag">Technology</span></div>
+                </div>
+            </div>
+            <div class="uni-card">
+                <span class="uni-target">DREAM TARGET</span>
+                <div class="uni-gallery">
+                    <img src="images/universities/postech-1.jpg" alt="POSTECH campus" class="uni-photo active" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/postech-2.jpg" alt="POSTECH main building" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <img src="images/universities/postech-3.jpg" alt="POSTECH research facility" class="uni-photo" loading="lazy" onerror="handleUniImgError(this)">
+                    <div class="uni-fallback">POSTECH</div>
+                    <div class="uni-dots"><button class="dot active"></button><button class="dot"></button><button class="dot"></button></div>
+                </div>
+                <div class="uni-body">
+                    <h3>POSTECH</h3>
+                    <p class="uni-location">South Korea</p>
+                    <p class="desc-text">A research-focused institute in Pohang, known for its strength in science, semiconductors, and technology innovation.</p>
+                    <div class="proj-tags"><span class="proj-tag">AI</span><span class="proj-tag">Research</span><span class="proj-tag">Technology</span></div>
+                </div>
+            </div>
+        </div>
+        <p class="proj-note">These are dream targets, not a ranking. Each gallery looks for <code>images/universities/&lt;name&gt;-1.jpg</code> through <code>-3.jpg</code> — drop real photos in with those exact filenames and they'll appear automatically, dots and swipe included.</p>
+    </section>
+
+    <section id="dream-companies">
+        <div class="section-header">
+            <span class="tag">CAREER VISION</span>
+            <h2>Dream Companies</h2>
+        </div>
+        <div class="dream-grid">
+            <div class="dream-card"><span>Google</span></div>
+            <div class="dream-card"><span>Microsoft</span></div>
+            <div class="dream-card"><span>Apple</span></div>
+            <div class="dream-card"><span>Samsung</span></div>
+        </div>
+        <div class="explore-badges" style="margin-top:1.6rem;">
+            <span class="explore-badge">AI</span>
+            <span class="explore-badge">Cloud Computing</span>
+            <span class="explore-badge">Hardware &amp; Semiconductors</span>
+            <span class="explore-badge">Product Engineering</span>
+        </div>
+        <p class="proj-note">Companies I aspire to work with one day, for their impact on AI, software, and technology — not where I work now.</p>
+    </section>
+
+    <section id="process">
+        <div class="section-header">
+            <span class="tag">MY PROCESS</span>
+            <h2>How I Learn &amp; Build</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="process-num">01</div>
+                <h4>Learn</h4>
+                <p>Study the concept properly — class, docs, or the Google course.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">02</div>
+                <h4>Practice</h4>
+                <p>Small exercises and problems until it actually clicks.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">03</div>
+                <h4>Build</h4>
+                <p>Turn it into a real mini-project instead of a one-off exercise.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">04</div>
+                <h4>Refine</h4>
+                <p>Debug, clean up, and note what I'd do differently next time.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-header">
+            <span class="tag">WHAT I'M BUILDING</span>
+            <h2>Projects</h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Suman Tech World — Business Platform</h3>
+                <p>A multi-portal business management system: an Admin dashboard (CRM, orders, inventory, invoices, payroll, audit logs), a Distributor portal (stock, purchase orders, payments), and a Staff portal (check-in/out, tasks, attendance, project tracking) — each with tablet and mobile views. Currently a full UI prototype in Figma; I'm working on building it into a real product.</p>
+                <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">UI/UX Design</span><span class="proj-tag">Admin Dashboard</span></div>
+                <div class="proj-links"><a href="https://gap-yin-55028403.figma.site/" target="_blank">Live Demo →</a></div>
+            </div>
+            <div class="project-card">
+                <h3>Add Your Project Title</h3>
+                <p>Short description — what it does and the problem it solves.</p>
+                <div class="proj-tags"><span class="proj-tag">Add Tech</span><span class="proj-tag">Add Tech</span></div>
+                <div class="proj-links"><a href="#">Live Demo →</a><a href="#">GitHub →</a></div>
+            </div>
+            <div class="project-card">
+                <h3>Add Your Project Title</h3>
+                <p>Short description — what it does and the problem it solves.</p>
+                <div class="proj-tags"><span class="proj-tag">Add Tech</span><span class="proj-tag">Add Tech</span></div>
+                <div class="proj-links"><a href="#">Live Demo →</a><a href="#">GitHub →</a></div>
+            </div>
+        </div>
+        <p class="proj-note">The last two cards are placeholders — swap them out with your real projects, screenshots, and links as you build them.</p>
+    </section>
+
+    <section id="resume">
+        <div class="section-header">
+            <span class="tag">MY CV</span>
+            <h2>Resume</h2>
+        </div>
+        <div class="resume-card">
+            <h3>Download My Resume</h3>
+            <p>Get the full picture of my education, skills, and goals as I work toward becoming a Data Scientist.</p>
+            <a href="#" class="btn btn-primary" onclick="alert('Add your resume PDF link here to make this button work!'); return false;">
+                Download CV (PDF)
+            </a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-header">
+            <span class="tag">REACH OUT</span>
+            <h2>Get In Touch</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info-card">
+                <h3>Direct Contact</h3>
+                <a href="mailto:raushan790s@gmail.com" class="contact-row">
+                    <span class="contact-tag">@</span>
+                    <span><strong>Email</strong><small>raushan790s@gmail.com</small></span>
+                </a>
+                <a href="tel:+919546184833" class="contact-row">
+                    <span class="contact-tag">Tel</span>
+                    <span><strong>Phone</strong><small>+91 95461 84833</small></span>
+                </a>
+                <a href="https://www.linkedin.com/in/raushan-kumar-422a05373?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" class="contact-row">
+                    <span class="contact-tag">in</span>
+                    <span><strong>LinkedIn</strong><small>Connect with me</small></span>
+                </a>
+                <a href="https://github.com/raushanprogramer" target="_blank" class="contact-row">
+                    <span class="contact-tag">GH</span>
+                    <span><strong>GitHub</strong><small>View my repositories</small></span>
+                </a>
+            </div>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Write your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/in/raushan-kumar-422a05373?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" title="LinkedIn">in</a>
+            <a href="https://github.com/raushanprogramer" target="_blank" title="GitHub">GH</a>
+            <a href="mailto:raushan790s@gmail.com" title="Email">@</a>
+            <a href="tel:+919546184833" title="Call">Call</a>
+        </div>
+        <p>&copy; 2024 Raushan Kumar. All rights reserved.</p>
+        <p class="tagline">B.Tech CSE (AI/ML) | Vivekananda Global University</p>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            navToggle.classList.remove('active');
+        }));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            document.querySelector('nav').style.background = window.scrollY > 50 ? 'rgba(5,7,13,0.98)' : 'rgba(5,7,13,0.85)';
+        });
+
+        // Typewriter effect
+        const roles = ['Full-Stack Developer in Progress', 'B.Tech CSE (AI/ML) Student', 'Aspiring AI/ML Engineer', 'Java . Python . C++ . C'];
+        let roleIndex = 0, charIndex = 0, deleting = false;
+        const typeEl = document.getElementById('typewriter');
+
+        function type() {
+            const current = roles[roleIndex];
+            if (!deleting) {
+                typeEl.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === current.length) { deleting = true; setTimeout(type, 1400); return; }
+            } else {
+                typeEl.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) { deleting = false; roleIndex = (roleIndex + 1) % roles.length; }
+            }
+            setTimeout(type, deleting ? 35 : 75);
+        }
+        type();
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeUp 0.7s ease-out forwards';
+                }
+            });
+        }, { threshold: 0.25 });
+
+        document.querySelectorAll('.skill-card, .about-card, .project-card, .process-step, .timeline-item, .dream-card, .uni-card').forEach(el => observer.observe(el));
+
+        // Contact form submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Thanks for your message! Raushan will get back to you soon.');
+            e.target.reset();
+        }
+
+        // University gallery: fallback handling + dots + swipe
+        function handleUniImgError(img) {
+            img.dataset.failed = 'true';
+            img.style.display = 'none';
+            const gallery = img.closest('.uni-gallery');
+            const allFailed = [...gallery.querySelectorAll('.uni-photo')].every(i => i.dataset.failed === 'true');
+            if (allFailed) {
+                gallery.querySelector('.uni-fallback').style.display = 'flex';
+                gallery.querySelector('.uni-dots').style.display = 'none';
+            }
+        }
+
+        document.querySelectorAll('.uni-gallery').forEach(gallery => {
+            const dots = [...gallery.querySelectorAll('.dot')];
+            const photos = [...gallery.querySelectorAll('.uni-photo')];
+
+            function showSlide(i) {
+                if (photos[i] && photos[i].dataset.failed === 'true') return;
+                photos.forEach(p => p.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                if (photos[i]) photos[i].classList.add('active');
+                if (dots[i]) dots[i].classList.add('active');
+            }
+
+            dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
+
+            let startX = 0;
+            gallery.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+            gallery.addEventListener('touchend', e => {
+                const diff = e.changedTouches[0].clientX - startX;
+                if (Math.abs(diff) < 40) return;
+                const active = dots.findIndex(d => d.classList.contains('active'));
+                const next = diff < 0 ? Math.min(active + 1, dots.length - 1) : Math.max(active - 1, 0);
+                showSlide(next);
+            }, { passive: true });
+        });
+    </script>
+</body>
+</html>
