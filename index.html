@@ -41,7 +41,7 @@
     h1, h2, h3, h4, .logo, .nav-links a, .btn, .badge, .explore-badge, .proj-tag,
     .timeline-tag, .uni-target, .eyebrow, .section-header span.tag,
     .skills-group-title, .dream-card span, footer p.tagline, .contact-row strong,
-    .terminal-meta, .form-group label, .social-row a, .footer-social a {
+    .terminal-meta, .form-group label, .social-row a, .footer-social a, .proj-status {
         font-family: var(--font-mono);
         letter-spacing: 0.03em;
     }
@@ -144,7 +144,7 @@
         -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         animation: fadeUp 0.8s ease-out 0.1s backwards;
     }
-    .role-line { font-size: 1.25rem; color: var(--text); margin-bottom: 1.2rem; min-height: 2rem; font-family: var(--font-mono); letter-spacing: 0.02em; animation: fadeUp 0.8s ease-out 0.2s backwards; }
+    .role-line { font-size: 1.1rem; color: var(--text); margin-bottom: 1.2rem; min-height: 2rem; font-family: var(--font-mono); letter-spacing: 0.02em; animation: fadeUp 0.8s ease-out 0.2s backwards; }
     .role-line .cursor { color: var(--primary); animation: blink 0.9s step-end infinite; }
     .hero-content p.desc { max-width: 560px; opacity: 0.9; margin-bottom: 1.5rem; animation: fadeUp 0.8s ease-out 0.3s backwards; font-family: var(--font-body); }
 
@@ -319,14 +319,23 @@
 
     /* Projects */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.6rem; }
+    .projects-grid.featured-single { display: flex; justify-content: center; }
     .project-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: all 0.3s; border-top: 3px solid var(--primary); }
     .project-card:hover { transform: translateY(-6px); border-color: var(--primary); }
-    .project-card h3 { font-family: var(--font-mono); font-size: 1.05rem; margin-bottom: 0.5rem; color: #fff; }
-    .project-card p { font-size: 0.85rem; opacity: 0.7; margin-bottom: 1rem; }
-    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-    .proj-tag { font-size: 0.68rem; padding: 0.25rem 0.6rem; border-radius: 50px; background: rgba(6,182,212,0.1); color: var(--secondary); border: 1px solid rgba(6,182,212,0.25); }
+    .project-card.featured { max-width: 620px; width: 100%; padding: 2.6rem; border-top-width: 4px; text-align: center; }
+    .proj-status {
+        display: inline-block; font-size: 0.72rem; padding: 0.35rem 0.85rem; border-radius: 50px;
+        background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.35);
+        margin-bottom: 1.1rem;
+    }
+    .project-card h3 { font-family: var(--font-mono); font-size: 1.15rem; margin-bottom: 0.7rem; color: #fff; }
+    .project-card p { font-size: 0.87rem; opacity: 0.75; margin-bottom: 1.1rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .project-card.featured .proj-tags { justify-content: center; }
+    .proj-tag { font-size: 0.7rem; padding: 0.28rem 0.65rem; border-radius: 50px; background: rgba(6,182,212,0.1); color: var(--secondary); border: 1px solid rgba(6,182,212,0.25); }
     .proj-links { display: flex; gap: 1.2rem; }
-    .proj-links a { font-family: var(--font-mono); font-size: 0.78rem; color: var(--secondary); text-decoration: none; }
+    .project-card.featured .proj-links { justify-content: center; }
+    .proj-links a { font-family: var(--font-mono); font-size: 0.8rem; color: var(--secondary); text-decoration: none; }
     .proj-links a:hover { text-decoration: underline; }
     .proj-note { text-align: center; opacity: 0.55; font-size: 0.85rem; margin-top: 2.2rem; font-family: var(--font-body); }
 
@@ -412,12 +421,12 @@
                 <p class="eyebrow">HELLO, I'M</p>
                 <h1>Raushan Kumar</h1>
                 <p class="role-line">&gt; <span id="typewriter"></span><span class="cursor">|</span></p>
-                <p class="desc">Third-semester B.Tech CSE (AI/ML) student at Vivekananda Global University, building real projects in Java, Python, C++ and C. Currently working through a Google course and aiming toward a career as a Data Scientist — I like turning what I learn into things I can actually ship.</p>
+                <p class="desc">B.Tech CSE (AI/ML) student building real-world software and practical projects while continuously improving my skills in programming, web development, AI/ML, and problem solving.</p>
                 <div class="badge-row">
                     <span class="badge">3rd Semester</span>
                     <span class="badge">CSE (AI/ML)</span>
                     <span class="badge">Google Course</span>
-                    <span class="badge">Aiming: Data Scientist</span>
+                    <span class="badge">AI/ML Enthusiast & Aspiring Software Engineer</span>
                 </div>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -467,7 +476,7 @@
             <div class="about-card">
                 <h3>Education</h3>
                 <p><strong>B.Tech CSE (AI/ML)</strong> — 3rd Semester</p>
-                <p><strong>University:</strong> Vivekananda Global University</p>
+                <p><strong>University:</strong> Vivekananda Global University, Jaipur, India</p>
                 <p><strong>Certification:</strong> Google Course (in progress)</p>
                 <p>Building a solid base in programming and problem-solving, with coursework increasingly focused on AI and machine learning fundamentals.</p>
             </div>
@@ -485,7 +494,7 @@
             <span class="tag">WHAT I KNOW</span>
             <h2>Technical Skills</h2>
         </div>
-        <p class="skills-group-title">Programming Languages</p>
+        <p class="skills-group-title">Core Programming</p>
         <div class="skills-grid">
             <div class="skill-card">
                 <div class="skill-icon">Java</div>
@@ -508,18 +517,22 @@
                 <p>Foundations of programming — memory, logic, and low-level thinking.</p>
             </div>
         </div>
-        <p class="skills-group-title second">Tools I Use</p>
+        <p class="skills-group-title second">Development</p>
         <div class="explore-badges" style="margin-bottom:2.5rem;">
+            <span class="explore-badge">HTML</span>
+            <span class="explore-badge">CSS</span>
+            <span class="explore-badge">JavaScript</span>
+            <span class="explore-badge">React</span>
             <span class="explore-badge">Git</span>
             <span class="explore-badge">GitHub</span>
             <span class="explore-badge">Figma</span>
         </div>
-        <p class="skills-group-title second">Currently Exploring</p>
+        <p class="skills-group-title second">AI/ML — Learning &amp; Exploring</p>
         <div class="explore-badges">
-            <span class="explore-badge">AI &amp; ML Fundamentals</span>
-            <span class="explore-badge">Data Analysis Basics</span>
-            <span class="explore-badge">Google Course Modules</span>
-            <span class="explore-badge">Data Science Tools</span>
+            <span class="explore-badge">Machine Learning</span>
+            <span class="explore-badge">Artificial Intelligence</span>
+            <span class="explore-badge">Data Science</span>
+            <span class="explore-badge">Python for AI/ML</span>
         </div>
     </section>
 
@@ -590,7 +603,7 @@
 
     <section id="universities">
         <div class="section-header">
-            <span class="tag">DREAM TARGETS, NOT A RANKING</span>
+            <span class="tag">DREAM UNIVERSITIES · FUTURE STUDY GOALS</span>
             <h2>Dream Universities</h2>
         </div>
         <div class="uni-grid">
@@ -675,7 +688,7 @@
                 </div>
             </div>
         </div>
-        <p class="proj-note">These are dream targets, not a ranking. Each gallery looks for <code>images/universities/&lt;name&gt;-1.jpg</code> through <code>-3.jpg</code> — drop real photos in with those exact filenames and they'll appear automatically, dots and swipe included.</p>
+        <p class="proj-note">These are dream targets, not a ranking. Each gallery looks for <code>images/universities/&lt;name&gt;-1.jpg</code> through <code>-3.jpg</code> — the real photos you already uploaded to GitHub.</p>
     </section>
 
     <section id="dream-companies">
@@ -732,27 +745,16 @@
             <span class="tag">WHAT I'M BUILDING</span>
             <h2>Projects</h2>
         </div>
-        <div class="projects-grid">
-            <div class="project-card">
+        <div class="projects-grid featured-single">
+            <div class="project-card featured">
+                <span class="proj-status">🚧 In Development</span>
                 <h3>Suman Tech World — Business Platform</h3>
-                <p>A multi-portal business management system: an Admin dashboard (CRM, orders, inventory, invoices, payroll, audit logs), a Distributor portal (stock, purchase orders, payments), and a Staff portal (check-in/out, tasks, attendance, project tracking) — each with tablet and mobile views. Currently a full UI prototype in Figma; I'm working on building it into a real product.</p>
-                <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">UI/UX Design</span><span class="proj-tag">Admin Dashboard</span></div>
-                <div class="proj-links"><a href="https://gap-yin-55028403.figma.site/" target="_blank">Live Demo →</a></div>
-            </div>
-            <div class="project-card">
-                <h3>Add Your Project Title</h3>
-                <p>Short description — what it does and the problem it solves.</p>
-                <div class="proj-tags"><span class="proj-tag">Add Tech</span><span class="proj-tag">Add Tech</span></div>
-                <div class="proj-links"><a href="#">Live Demo →</a><a href="#">GitHub →</a></div>
-            </div>
-            <div class="project-card">
-                <h3>Add Your Project Title</h3>
-                <p>Short description — what it does and the problem it solves.</p>
-                <div class="proj-tags"><span class="proj-tag">Add Tech</span><span class="proj-tag">Add Tech</span></div>
-                <div class="proj-links"><a href="#">Live Demo →</a><a href="#">GitHub →</a></div>
+                <p>A multi-portal business management platform concept for businesses, including Admin, Distributor, Staff, and User portals. The system is being developed with features for CRM, inventory, projects, payments, documents, orders, attendance, and business operations. The current version is under active development.</p>
+                <div class="proj-tags"><span class="proj-tag">UI/UX</span><span class="proj-tag">Figma</span><span class="proj-tag">Full-Stack Development</span><span class="proj-tag">AI/Automation</span></div>
+                <div class="proj-links"><a href="https://gap-yin-55028403.figma.site/" target="_blank">View Prototype →</a></div>
             </div>
         </div>
-        <p class="proj-note">The last two cards are placeholders — swap them out with your real projects, screenshots, and links as you build them.</p>
+        <p class="proj-note">More projects are currently in development.</p>
     </section>
 
     <section id="resume">
@@ -855,7 +857,7 @@
         });
 
         // Typewriter effect
-        const roles = ['Full-Stack Developer in Progress', 'B.Tech CSE (AI/ML) Student', 'Aspiring AI/ML Engineer', 'Java . Python . C++ . C'];
+        const roles = ['AI/ML Enthusiast & Aspiring Software Engineer', 'B.Tech CSE (AI/ML) Student', 'Building Real Projects', 'Java . Python . C++ . C'];
         let roleIndex = 0, charIndex = 0, deleting = false;
         const typeEl = document.getElementById('typewriter');
 
