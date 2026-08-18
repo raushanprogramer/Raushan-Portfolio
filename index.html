@@ -136,6 +136,7 @@
     .terminal-meta .status-ok { color: var(--secondary); }
 
     .eyebrow { color: var(--secondary); font-weight: 600; margin-bottom: 0.6rem; animation: fadeUp 0.8s ease-out; font-size: 0.85rem; }
+    .headline { font-size: 1.3rem; font-weight: 600; color: var(--secondary); margin-bottom: 0.9rem; font-family: var(--font-mono); animation: fadeUp 0.8s ease-out 0.15s backwards; }
     .hero-content h1 {
         font-family: var(--font-mono);
         font-size: clamp(2.1rem, 6vw, 3.5rem); font-weight: 800;
@@ -220,7 +221,8 @@
     }
 
     /* About */
-    .about-intro { max-width: 800px; margin: 0 auto 2rem; text-align: center; opacity: 0.9; font-family: var(--font-body); }
+    .about-intro { max-width: 800px; margin: 0 auto 1.2rem; text-align: center; opacity: 0.9; font-family: var(--font-body); }
+    .about-intro:last-of-type { margin-bottom: 2rem; }
     .skills-group-title {
         font-size: 0.82rem; text-transform: uppercase;
         text-align: center; margin: 0 0 1.3rem;
@@ -260,7 +262,9 @@
         padding: 0.6rem 1.1rem; border-radius: 50px; background: var(--card-bg);
         border: 1px solid var(--border); font-size: 0.78rem; color: var(--text);
         display: inline-flex; align-items: center;
+        transition: all 0.3s;
     }
+    .explore-badge:hover { border-color: var(--primary); color: #fff; transform: translateY(-2px); }
 
     /* Timeline (Journey) */
     .timeline { position: relative; max-width: 720px; margin: 0 auto; padding-left: 2rem; }
@@ -279,11 +283,12 @@
     .dream-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.2rem; max-width: 680px; margin: 0 auto; }
     .dream-card {
         background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
-        padding: 2rem 1rem; text-align: center; transition: all 0.3s;
-        display: flex; align-items: center; justify-content: center; min-height: 90px;
+        padding: 1.6rem 1rem; text-align: center; transition: all 0.3s;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem; min-height: 110px;
     }
     .dream-card:hover { transform: translateY(-6px); border-color: var(--secondary); box-shadow: 0 14px 30px rgba(6,182,212,0.15); }
     .dream-card span { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+    .dream-card small { font-size: 0.74rem; color: var(--text-dim); font-family: var(--font-body); line-height: 1.4; }
 
     /* Dream Universities */
     .uni-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.6rem; }
@@ -311,8 +316,19 @@
     .uni-card p.desc-text { font-size: 0.85rem; opacity: 0.75; margin-bottom: 1rem; }
 
     /* Process */
-    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.4rem; }
-    .process-step { text-align: center; padding: 1.8rem 1.2rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; font-family: var(--font-body); }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.4rem; position: relative; }
+    .process-grid::before {
+        content: '';
+        position: absolute;
+        top: 2.35rem;
+        left: 8%; right: 8%;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        opacity: 0.2;
+        z-index: 0;
+    }
+    @media (max-width: 700px) { .process-grid::before { display: none; } }
+    .process-step { text-align: center; padding: 1.8rem 1.2rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; font-family: var(--font-body); position: relative; z-index: 1; }
     .process-num { font-size: 0.78rem; color: var(--secondary); font-weight: 700; margin-bottom: 0.7rem; font-family: var(--font-mono); letter-spacing: 0.05em; }
     .process-step h4 { font-family: var(--font-mono); font-size: 1rem; margin-bottom: 0.5rem; color: #fff; }
     .process-step p { font-size: 0.82rem; opacity: 0.75; }
@@ -373,6 +389,9 @@
     }
     .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(16,185,129,0.15); }
     .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-status { margin-top: 1rem; font-size: 0.85rem; text-align: center; min-height: 1.2rem; font-family: var(--font-body); }
+    .form-status.success { color: var(--primary); }
+    .form-status.error { color: #f87171; }
 
     @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
 
@@ -420,17 +439,17 @@
                 <p class="terminal-meta">&gt; system.status: <span class="status-ok">online</span> // profile.access: public</p>
                 <p class="eyebrow">HELLO, I'M</p>
                 <h1>Raushan Kumar</h1>
+                <p class="headline">AI/ML Enthusiast &amp; Aspiring Software Engineer</p>
                 <p class="role-line">&gt; <span id="typewriter"></span><span class="cursor">|</span></p>
-                <p class="desc">B.Tech CSE (AI/ML) student building real-world software and practical projects while continuously improving my skills in programming, web development, AI/ML, and problem solving.</p>
+                <p class="desc">B.Tech CSE (AI/ML) student building real-world software, practical projects, and AI/ML solutions while continuously improving my programming, development, and problem-solving skills.</p>
                 <div class="badge-row">
                     <span class="badge">3rd Semester</span>
                     <span class="badge">CSE (AI/ML)</span>
                     <span class="badge">Google Course</span>
-                    <span class="badge">AI/ML Enthusiast & Aspiring Software Engineer</span>
                 </div>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+                    <a href="#projects" class="btn btn-primary">View Projects →</a>
+                    <a href="#contact" class="btn btn-secondary">Let's Connect →</a>
                 </div>
                 <div class="social-row">
                     <a href="https://www.linkedin.com/in/raushan-kumar-422a05373?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_android" target="_blank" title="LinkedIn">in</a>
@@ -459,18 +478,15 @@
             <span class="tag">GET TO KNOW ME</span>
             <h2>About Me</h2>
         </div>
-        <p class="about-intro">I'm building a serious foundation in computer science, AI/ML, and software engineering — one deliberate step at a time. Right now that means core programming in Java, Python, C++ and C, real projects instead of just exercises, and a growing curiosity about how intelligent systems are designed and researched. The long-term goal is bigger than a degree: I'm preparing for GATE, aiming for a GKS-funded Master's and a PhD in South Korea, and working toward a career that combines engineering, AI/ML, and research — eventually contributing to technology and research organizations with real global reach.</p>
+        <p class="about-intro">I'm Raushan Kumar, a B.Tech CSE (AI/ML) student focused on software development, AI/ML, and practical problem solving. Right now that means learning and building across programming, web development, AI/ML, and software engineering — turning coursework into real projects instead of leaving it as theory.</p>
+        <p class="about-intro">My direction is clear: growing into a strong AI/ML-focused software engineer through consistent, hands-on work. Longer-term, higher studies abroad and AI/ML research are also part of the picture — though for now, the day-to-day focus stays on building and learning.</p>
         <p class="skills-group-title" style="margin-bottom:1rem;">Career Direction</p>
         <div class="explore-badges" style="margin-bottom:2.8rem;">
-            <span class="explore-badge">Artificial Intelligence</span>
-            <span class="explore-badge">Machine Learning</span>
-            <span class="explore-badge">Deep Learning</span>
-            <span class="explore-badge">Generative AI</span>
-            <span class="explore-badge">AI Agents</span>
-            <span class="explore-badge">Software Engineering</span>
-            <span class="explore-badge">Full-Stack Development</span>
-            <span class="explore-badge">Research</span>
-            <span class="explore-badge">Product Innovation</span>
+            <span class="explore-badge">Programming</span>
+            <span class="explore-badge">Web Development</span>
+            <span class="explore-badge">AI/ML</span>
+            <span class="explore-badge">Problem Solving</span>
+            <span class="explore-badge">Practical Project Development</span>
         </div>
         <div class="about-grid">
             <div class="about-card">
@@ -482,9 +498,9 @@
             </div>
             <div class="about-card">
                 <h3>Where I'm Headed</h3>
-                <p><strong>Long-term goal:</strong> AI/ML Engineer, Software Engineer &amp; Researcher</p>
-                <p><strong>Path:</strong> B.Tech → GATE → Master's (South Korea) → PhD</p>
-                <p>The full roadmap is just below in My Journey, along with my dream universities and companies.</p>
+                <p><strong>Current status:</strong> Student</p>
+                <p><strong>Future goals:</strong> higher studies in AI/ML or Computer Science, and growing into a strong software/AI-ML engineer.</p>
+                <p>The full picture is just below in My Journey, along with my dream universities and companies.</p>
             </div>
         </div>
     </section>
@@ -494,7 +510,7 @@
             <span class="tag">WHAT I KNOW</span>
             <h2>Technical Skills</h2>
         </div>
-        <p class="skills-group-title">Core Programming</p>
+        <p class="skills-group-title">Programming</p>
         <div class="skills-grid">
             <div class="skill-card">
                 <div class="skill-icon">Java</div>
@@ -517,22 +533,35 @@
                 <p>Foundations of programming — memory, logic, and low-level thinking.</p>
             </div>
         </div>
-        <p class="skills-group-title second">Development</p>
+        <p class="skills-group-title second">Web Development</p>
         <div class="explore-badges" style="margin-bottom:2.5rem;">
             <span class="explore-badge">HTML</span>
             <span class="explore-badge">CSS</span>
             <span class="explore-badge">JavaScript</span>
             <span class="explore-badge">React</span>
-            <span class="explore-badge">Git</span>
-            <span class="explore-badge">GitHub</span>
-            <span class="explore-badge">Figma</span>
         </div>
         <p class="skills-group-title second">AI/ML — Learning &amp; Exploring</p>
-        <div class="explore-badges">
+        <div class="explore-badges" style="margin-bottom:2.5rem;">
+            <span class="explore-badge">Python for AI/ML</span>
             <span class="explore-badge">Machine Learning</span>
+            <span class="explore-badge">Deep Learning</span>
             <span class="explore-badge">Artificial Intelligence</span>
             <span class="explore-badge">Data Science</span>
-            <span class="explore-badge">Python for AI/ML</span>
+        </div>
+        <p class="skills-group-title second">Tools &amp; Development</p>
+        <div class="explore-badges" style="margin-bottom:2.5rem;">
+            <span class="explore-badge">Git</span>
+            <span class="explore-badge">GitHub</span>
+            <span class="explore-badge">VS Code</span>
+            <span class="explore-badge">Firebase</span>
+            <span class="explore-badge">Figma</span>
+        </div>
+        <p class="skills-group-title second">Currently Learning</p>
+        <div class="explore-badges">
+            <span class="explore-badge">AI Agents</span>
+            <span class="explore-badge">AI Automation</span>
+            <span class="explore-badge">Backend Development</span>
+            <span class="explore-badge">Full-Stack Development</span>
         </div>
     </section>
 
@@ -542,29 +571,65 @@
             <h2>My Journey</h2>
         </div>
         <div class="timeline">
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">STAGE 1</span>
+                <h4>Foundation</h4>
+                <p>Starting with programming fundamentals, logical thinking, and problem solving — building a strong computer science base before moving further.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">STAGE 2</span>
+                <h4>Building for the Web</h4>
+                <p>Moving from fundamentals toward building practical websites and interactive web projects, applying what I'd learned to real, visible outcomes.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">STAGE 3</span>
+                <h4>AI/ML Exploration</h4>
+                <p>Exploring how intelligent systems are built through practical learning and experimentation, not just theory.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">STAGE 4</span>
+                <h4>Software Engineering</h4>
+                <p>Learning how to turn ideas into complete, usable software, and steadily improving my development workflow through real projects.</p>
+            </div>
             <div class="timeline-item now">
                 <div class="timeline-dot"></div>
                 <span class="timeline-tag now">NOW</span>
                 <h4>B.Tech CSE (AI/ML)</h4>
-                <p>3rd semester at Vivekananda Global University — building core programming and AI/ML foundations.</p>
+                <p>3rd semester at Vivekananda Global University — where all of this comes together right now.</p>
+            </div>
+            <div class="timeline-item now">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag now">NOW</span>
+                <h4>Current Focus</h4>
+                <p>Building practical projects, exploring AI agents and automation, working across the full stack, and continuously sharpening my problem-solving skills.</p>
             </div>
             <div class="timeline-item goal">
                 <div class="timeline-dot"></div>
                 <span class="timeline-tag goal">GOAL</span>
-                <h4>GATE Preparation → GATE</h4>
+                <h4>Higher Studies</h4>
+                <p>Pursuing further education to deepen my expertise beyond the B.Tech.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">GOAL</span>
+                <h4>GATE</h4>
                 <p>Preparing seriously for the GATE exam to open the door to higher studies.</p>
             </div>
             <div class="timeline-item goal">
                 <div class="timeline-dot"></div>
                 <span class="timeline-tag goal">GOAL</span>
-                <h4>Global Korea Scholarship</h4>
+                <h4>Global Korea Scholarship (GKS)</h4>
                 <p>Aiming for the GKS to fund a Master's degree in South Korea.</p>
             </div>
             <div class="timeline-item goal">
                 <div class="timeline-dot"></div>
                 <span class="timeline-tag goal">GOAL</span>
                 <h4>Master's in South Korea</h4>
-                <p>Postgraduate study focused on AI/ML, inside one of the world's leading tech ecosystems.</p>
+                <p>Postgraduate study inside one of the world's leading AI/ML and technology ecosystems.</p>
             </div>
             <div class="timeline-item goal">
                 <div class="timeline-dot"></div>
@@ -581,8 +646,14 @@
             <div class="timeline-item goal">
                 <div class="timeline-dot"></div>
                 <span class="timeline-tag goal">GOAL</span>
+                <h4>International Academic Opportunities</h4>
+                <p>Staying open to studying and growing within a global academic environment along the way.</p>
+            </div>
+            <div class="timeline-item goal">
+                <div class="timeline-dot"></div>
+                <span class="timeline-tag goal">GOAL</span>
                 <h4>Global Tech Career</h4>
-                <p>A career combining AI/ML engineering, software engineering, research and innovation.</p>
+                <p>A long-term career combining AI/ML engineering, software engineering, research, and innovation.</p>
             </div>
         </div>
     </section>
@@ -697,10 +768,22 @@
             <h2>Dream Companies</h2>
         </div>
         <div class="dream-grid">
-            <div class="dream-card"><span>Google</span></div>
-            <div class="dream-card"><span>Microsoft</span></div>
-            <div class="dream-card"><span>Apple</span></div>
-            <div class="dream-card"><span>Samsung</span></div>
+            <div class="dream-card">
+                <span>Google</span>
+                <small>AI research and search at global scale</small>
+            </div>
+            <div class="dream-card">
+                <span>Microsoft</span>
+                <small>Cloud platforms and developer tools</small>
+            </div>
+            <div class="dream-card">
+                <span>Apple</span>
+                <small>Hardware and software built as one</small>
+            </div>
+            <div class="dream-card">
+                <span>Samsung</span>
+                <small>Semiconductors and hardware innovation</small>
+            </div>
         </div>
         <div class="explore-badges" style="margin-top:1.6rem;">
             <span class="explore-badge">AI</span>
@@ -720,22 +803,22 @@
             <div class="process-step">
                 <div class="process-num">01</div>
                 <h4>Learn</h4>
-                <p>Study the concept properly — class, docs, or the Google course.</p>
+                <p>Properly understanding the concept first — class, docs, or the Google course — before writing any code.</p>
             </div>
             <div class="process-step">
                 <div class="process-num">02</div>
                 <h4>Practice</h4>
-                <p>Small exercises and problems until it actually clicks.</p>
+                <p>Small, focused exercises until the idea actually sticks, not just something I recognize.</p>
             </div>
             <div class="process-step">
                 <div class="process-num">03</div>
                 <h4>Build</h4>
-                <p>Turn it into a real mini-project instead of a one-off exercise.</p>
+                <p>A real mini-project instead of a one-off exercise — something that forces real decisions, not just following a tutorial.</p>
             </div>
             <div class="process-step">
                 <div class="process-num">04</div>
                 <h4>Refine</h4>
-                <p>Debug, clean up, and note what I'd do differently next time.</p>
+                <p>Debugging, cleaning up, and noting what I'd do differently — the step that makes a working project a better one.</p>
             </div>
         </div>
     </section>
@@ -796,22 +879,24 @@
                     <span><strong>GitHub</strong><small>View my repositories</small></span>
                 </a>
             </div>
-            <form class="contact-form" onsubmit="handleSubmit(event)">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/mbgrzkdj" method="POST">
+                <input type="hidden" name="_subject" value="New Portfolio Contact">
                 <div class="form-group">
                     <label for="name">Your Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Your Email</label>
-                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" placeholder="Write your message here..." required></textarea>
+                    <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                    Send Message
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%; justify-content: center;">
+                    Send Message →
                 </button>
+                <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
             </form>
         </div>
     </section>
@@ -887,12 +972,60 @@
 
         document.querySelectorAll('.skill-card, .about-card, .project-card, .process-step, .timeline-item, .dream-card, .uni-card').forEach(el => observer.observe(el));
 
-        // Contact form submit
-        function handleSubmit(e) {
+        // Contact form submit — Formspree AJAX integration
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+        let isSubmitting = false;
+
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            alert('Thanks for your message! Raushan will get back to you soon.');
-            e.target.reset();
-        }
+            if (isSubmitting) return;
+
+            const endpoint = contactForm.getAttribute('action');
+            if (!endpoint || endpoint.includes('YOUR_FORM_ID')) {
+                formStatus.textContent = 'This form is not fully set up yet — a Formspree endpoint still needs to be added in the code.';
+                formStatus.className = 'form-status error';
+                return;
+            }
+
+            isSubmitting = true;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            formStatus.textContent = '';
+            formStatus.className = 'form-status';
+
+            const data = new FormData(contactForm);
+
+            fetch(endpoint, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    submitBtn.textContent = 'Message Sent ✓';
+                    formStatus.textContent = "Message sent successfully! I'll get back to you soon.";
+                    formStatus.className = 'form-status success';
+                    contactForm.reset();
+                    setTimeout(() => {
+                        submitBtn.textContent = 'Send Message →';
+                        submitBtn.disabled = false;
+                        isSubmitting = false;
+                    }, 3000);
+                } else {
+                    return response.json().then(resData => {
+                        const msg = (resData && resData.errors) ? resData.errors.map(err => err.message).join(', ') : 'Submission failed';
+                        throw new Error(msg);
+                    });
+                }
+            }).catch(() => {
+                submitBtn.textContent = 'Try Again →';
+                formStatus.textContent = 'Unable to send your message right now. Please try again or contact me directly.';
+                formStatus.className = 'form-status error';
+                submitBtn.disabled = false;
+                isSubmitting = false;
+            });
+        });
 
         // University gallery: fallback handling + dots + swipe
         function handleUniImgError(img) {
